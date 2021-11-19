@@ -12,3 +12,8 @@
 
 
 ## 16.11.2021 
+
+* HTML-Grundgerüst in VSC erstellen: ´´html:5´´´
+* Überschrift in HTML erstellen: <h1>...<h2>
+* Title in HTML einbauen 
+* Schließende Tags haben einen führenden ´´/´´
