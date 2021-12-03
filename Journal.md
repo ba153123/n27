@@ -28,3 +28,17 @@
      3    * Eine Nachricht zu den vorgenommen Änderungen der Quelltextes eintippen. Dann "Commithaken" klicken.
      4    * Pull und Push auslösen in den auf das Rädchen ganz unten bzw. Wolke geklickt wird.
 
+
+## 26.11.2021
+
+## 30.11.2021 
+* Am Anfang wird der Stunde wird der eigene Webserver im Terminal gestartet. Der Befehl wird mit der Pfeiltaste "Nach oben" angezeigt und ausgeführt.
+* Im Browser wird Inhalt über die Adresse ´´´´´localhost3000´´´´
+aufgerufen.
+*Mit dem Befehl´´´´ipconfig´´´´(bei Apple:ifconfig) wird die eigene IP-Adresse angezeigt. Die eigene IP-Adresse wird im Netwerk eindeutig.
+
+## 03.12.2021
+*Schriftart ändern mit CSS
+*HTML-Grundgerüst erstellen
+*style einfügen über styles.css-Datei
+*Geschweifte Klammer mit ALTDr+7 erstellen 
