@@ -42,3 +42,15 @@ aufgerufen.
 *HTML-Grundgerüst erstellen
 *style einfügen über styles.css-Datei
 *Geschweifte Klammer mit ALTDr+7 erstellen 
+
+## 07.12.2021
+*Schriftfarbe in styles.css angepasst
+*styles.css in public ordner verschoben
+
+
+## 14.12.2021
+* Unterschied zwischen PNG and JPG/JPEG verstehen 
+* Alt-Tag beim Bild verstehen 
+* Bild einfügen 
+* Hyperlink einbauen mit <a href...></a>
+* Target beim Hyperlink verstehen. _blank öffnet im Tap
