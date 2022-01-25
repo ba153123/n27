@@ -54,3 +54,51 @@ aufgerufen.
 * Bild einfügen 
 * Hyperlink einbauen mit <a href...></a>
 * Target beim Hyperlink verstehen. _blank öffnet im Tap
+
+
+
+## 17.12.2021
+* Tabelle einfühgen
+* Zeilen <tr> (= Table-Row)und Zellen <td> (=Table data in HTML-Tabellen)
+* Listen (geordneten <ol> und ungeorndet <ul>) verstehen
+* In ungeordneten Listen den Aufzählungspunkt durch Bild erstezten
+* Horizentale Linie <hr> einbauen
+
+
+## 21.12.2021
+* Zeilenumbruch <br> einbauen 
+* 
+
+
+## 11.01.2022
+*Seite zum lernen selfhtml, w3schools 
+
+## 14.01.2022
+* Ein lauffähiges Projekt mit einer leeren index.ejs 
+wird ausgeteilt. Es ist keine styles.css vorhanden.
+*Die styless.css muss angelegt und richtig in der index.ejs eingebaut 
+werden.
+* Teil 1: HTML und CSS nach Vorgabe einbauen
+* 
+
+* Die Styles aus der styles.css müssen gekonnt werden. ES kann auch sein, dass unbekannte Styles nach Vorgabe eingebaut werden müssen. Beispiel: gebe der Tabelle 
+
+# 18.01.2022
+* Weitere Seite erstellen, indem die index.ejs kopiert und umbennant wurde. 
+
+#  21.01.2022 
+* Login-Seite erstellen
+* formular aus w3scholls eingebaut 
+* Type der Inputs entsprechen auf Password bzw. Number geändert
+* Verlinkung von login nach index und zurück erstellen 
+* die ID der Inputs setzen 
+
+## 25.01.2022
+* Unterschied zwischen Post und Get verstehen. GET
+transportiert die Daten vom 
+Browser zum Server über die Adresszeile 
+Unterschied zwischen app.get(...) und app.post(...)
+verstehen. app.get ('login') wird ausgeführt, wenn die 
+Login-Seite im Browser angefordert wird. app.post ('login')
+wird ausgeführt, wenn der Button auf der Login-Seite 
+gedrückt. 
