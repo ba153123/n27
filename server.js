@@ -1,3 +1,38 @@
+// Programme verarbeiten oft Objekte der realen Welt.
+// Objekte haben Eigenschaften.
+// In unserem Bankingprogramm interessieren uns Objekte,
+// wie z.B. Kunde, Konto, Filiale, Bankautomat, ...
+// Alle Kunden unserer Bank haben dieselben Eigenschaften, aber
+// unterschiedliche Eigenschaftswerte
+
+class Kunde{
+    constructor(){
+        this.IdKunde
+        this.Nachname
+        this.Vorname
+        this.Kennwort
+        this.Kontostand
+        this.Geburtsdatum
+        this.Mail
+    }
+}
+
+// Von der Kunden-Klasse wird eine konkrte Instanz
+// gebildet. 
+
+let kunde = new Kunde()
+
+// Die konkrete Instanz bekommt Eigenschaftswerte
+// zugewiesen
+
+kunde.IdKunde = 150000
+kunde.Nachname = "Müller"
+kunde.Vorname = "Pit"
+kunde.Geburtsdatum = "23.10.2000"
+kunde.Mail = "mueller@web.de"
+kunde.Kennwort = "123"
+
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const meineApp = express()
@@ -13,20 +48,43 @@ meineApp.get('/',(browserAnfrage, serverAntwort, next) => {
     serverAntwort.render('index.ejs', {})          
 })
 
-// Wenn die lohin- Seite im Browser aufgerufen wird, ...
-
-meineApp.get('/login',(browserAnfrage, serverAntwort, next) => { 
+meineApp.post('/login',(browserAnfrage, serverAntwort, next) => {              
     
+    const idKunde = browserAnfrage.body.IdKunde
+    const kennwort = browserAnfrage.body.Kennwort
+    
+    console.log("ID des Kunden: " + idKunde)
+    console.log("Kennwort des Kunden: " + kennwort)
+
+    if(idKunde == kunde.IdKunde && kennwort == kunde.kennwort){ 
+
+        // Wenn die Id des Kunden mit der Eingabe in Browser übereinstimmt 
+        // UND das Kennwort ebenfalls übereinstimmt, 
+        // dann gibt der Server  die gerenderte Index-Seite zurück. 
+        serverAntwort.render('index.ejs', {})
+    }else{
+        serverAntwort.render('login.ejs', {})
+    }
+}) 
+
+
+// Wenn die login-Seite im Browser aufgerufen wird, ...
+
+meineApp.get('/login',(browserAnfrage, serverAntwort, next) => {              
+
     // ... dann wird die login.ejs vom Server gerendert an den
-    // Browser zurückgegeben: 
+    // Browser zurückgegeben:
 
     serverAntwort.render('login.ejs', {})          
-})  
+})
 
-// Die meineApp.post ('login') wird ausgeführt, sobald der Button 
+// Die meineApp.post('login') wird ausgeführt, sobald der Button
 // auf dem Login-Formular gedrückt wird.
 
-
-meineApp.post('/login',(browserAnfrage, serverAntwort, next) => { 
+meineApp.post('/login',(browserAnfrage, serverAntwort, next) => {              
     serverAntwort.render('index.ejs', {})          
 })
+
+
+//require('./Uebungen/ifUndElse.js')
+require('./Uebungen/klasseUndObjekt.js') 
