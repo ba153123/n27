@@ -1,9 +1,8 @@
-// Programme verarbeiten oft Objekte der realen Welt.
-// Objekte haben Eigenschaften.
-// In unserem Bankingprogramm interessieren uns Objekte,
+// Programme verarbeiten oft Objekte der realen Welt. Objekte haben 
+// Eigenschaften. In unserem Bankingprogramm interessieren uns Objekte,
 // wie z.B. Kunde, Konto, Filiale, Bankautomat, ...
 // Alle Kunden unserer Bank haben dieselben Eigenschaften, aber
-// unterschiedliche Eigenschaftswerte
+// unterschiedliche Eigenschaftswerte.
 
 class Kunde{
     constructor(){
@@ -17,12 +16,11 @@ class Kunde{
     }
 }
 
-// Von der Kunden-Klasse wird eine konkrete Instanz gebildet. 
+// Von der Kunden-Klasse wird eine konkrte Instanz gebildet. 
 
-let kunde = new Kunde() 
+let kunde = new Kunde()
 
-// Die konkrete Instanz bekommt Eigenschaftswerte
-// zugewiesen
+// Die konkrete Instanz bekommt Eigenschaftswerte zugewiesen.
 
 kunde.IdKunde = 15000
 kunde.Nachname = "Müller"
@@ -30,7 +28,6 @@ kunde.Vorname = "Pit"
 kunde.Geburtsdatum = "23.10.2000"
 kunde.Mail = "mueller@web.de"
 kunde.Kennwort = "123"
-
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -46,13 +43,15 @@ const server = meineApp.listen(process.env.PORT || 3000, () => {
 })
 
 // Die Methode meineApp.get('/' ...) wird abgearbeitet, wenn
-// der Kunde die Indexseite ansurft.
+// der Kunde die Indexseite (localhost:3000 bzw. 
+// n27.herokuapp.com) ansurft.
 
-meineApp.get('/',(browserAnfrage, serverAntwort, next) => {     
+meineApp.get('/',(browserAnfrage, serverAntwort, next) => {              
     
-    // Wenn ein signiter Cookie mit Namen 'istAngemeldetAls' im Browser vorhanden ist, 
-    // dann ist die Prüfung wahr und es wird die gerenderte Index - Seite an den Browser  
-    
+    // Wenn ein signierter Cookie mit Namen 'istAngemeldetAls' im Browser vorhanden ist,
+    // dann ist die Prüfung wahr und es wird die gerenderte Index-Seite an den Browser
+    // zurückgegeben. Anderenfalls wird die Login-Seite an den Browser gegeben.
+
     if(browserAnfrage.signedCookies['istAngemeldetAls']){
 
         // Wenn der Kunde bereits angemeldet ist, soll die
@@ -69,15 +68,14 @@ meineApp.get('/',(browserAnfrage, serverAntwort, next) => {
     }                 
 })
 
-// Die Methode meineApp.post('/login' ...) wird abgearbeitet, sobald 
-// der Anwender im Login - Formular auf "Einloggen" klickt. 
-
-
-    // Die im Browser eingegebene IdKunde und Kennwort werden zugewiesen 
-    // an die Konstanten 
+// Die Methode meineApp.post('/login' ...) wird abgearbeitet, sobald
+// der Anwender im Login-Formular auf "Einloggen" klickt.
 
 meineApp.post('/login',(browserAnfrage, serverAntwort, next) => {              
     
+    // Die im Browser eingegebene IdKunde und Kennwort werden zugewiesen
+    // an die Konstanten namens idKunde und kennwort.
+
     const idKunde = browserAnfrage.body.IdKunde
     const kennwort = browserAnfrage.body.Kennwort
     
@@ -87,12 +85,13 @@ meineApp.post('/login',(browserAnfrage, serverAntwort, next) => {
     // Die Identität des Kunden wird überprüft.
     
     if(idKunde == kunde.IdKunde && kennwort == kunde.Kennwort){
-        
-        // Ein Cookie namens 'istAngemeldet' wird beim Browser gesetzt.
-        // Der Wert des Cookies ist das in eine Zeichenkette umgewandelte Kunden-Objekt. 
+    
+        // Ein Cookie namens 'istAngemeldetAls' wird beim Browser gesetzt.
+        // Der Wert des Cookies ist das in eine Zeichenkette umgewandelte Kunden-Objekt.
+        // Der Cookie wird signiert, also gegen Manpulationen geschützt.
 
-        serverAntwort.cookie('istAngemeldetAls',JSON.stringify(kunde),{signed:true}) 
-        console.log("Der Cookie wurde erfolgreich gesetzt")  
+        serverAntwort.cookie('istAngemeldetAls',JSON.stringify(kunde),{signed:true})
+        console.log("Der Cookie wurde erfolgreich gesetzt.")
 
         // Wenn die Id des Kunden mit der Eingabe im Browser übereinstimmt
         // UND ("&&") das Kennwort ebenfalls übereinstimmt,
@@ -119,7 +118,9 @@ meineApp.get('/login',(browserAnfrage, serverAntwort, next) => {
     // ... dann wird die login.ejs vom Server gerendert an den
     // Browser zurückgegeben:
 
-    serverAntwort.clearCookie('istAngemeldet')
+    // Der Cookie wird gelöscht.
+
+    serverAntwort.clearCookie('istAngemeldetAls')
 
     serverAntwort.render('login.ejs', {
         meldung : "Bitte geben Sie die Zugangsdaten ein."
@@ -129,9 +130,11 @@ meineApp.get('/login',(browserAnfrage, serverAntwort, next) => {
 // Die meineApp.post('login') wird ausgeführt, sobald der Button
 // auf dem Login-Formular gedrückt wird.
 
-meineApp.post('/login',(browserAnfrage, serverAntwort, next) => {              
-    serverAntwort.render('index.ejs', {})          
-})
+meineApp.get('/about',(browserAnfrage, serverAntwort, next) => {    
+
+    serverAntwort.render('about.ejs', {         
+    })
+}) 
 
 // require('./Uebungen/ifUndElse.js')
-require('./Uebungen/klasseUndObjekt.js')
+// require('./Uebungen/klasseUndObjekt.js')
