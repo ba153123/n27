@@ -12,10 +12,13 @@
 
 .navigationsleiste {  
   font-family: Arial, Helvetica, sans-serif;    
-  background-color: rgb(119, 107, 107);        
+  background-color: rgb(119, 107, 107);     
+  color: rgb(119, 107, 107);   
   font-size: 2vh;    
-  text-align:center;  
-  color: white;      
+  text-align: center; 
+  vertical-align: 2vh;
+  display: table-cell;
+  color: rgb(119, 107, 107);       
   margin-bottom: 20px;
 }
 
