@@ -145,7 +145,8 @@ meineApp.get('/profile',(browserAnfrage, serverAntwort, next) => {
         Nachname: kunde.Nachname,
         Mail: kunde.Mail,
         Rufnummer: kunde.Rufnummer,
-        Kennwort: kunde.Kennwort
+        Kennwort: kunde.Kennwort,
+        Erfolgsmeldung: ""
     })        
 })
 
@@ -154,13 +155,45 @@ meineApp.get('/profile',(browserAnfrage, serverAntwort, next) => {
 
 meineApp.post('/profile',(browserAnfrage, serverAntwort, next) => {              
     
+    // Die Erfolgsmeldung für das Speichern der geänderten 
+    // Profildaten wird in eine lokale Variable namens 
+    // erfolgsmeldung gespeichert. 
+
+    let erfolgsmeldung = ""
+
     // Der Wert der Eigenschaft von Mail im Browser wird 
     // zugewiesen (=) an die Eigenschaft Mail des Objekts kunde  
 
+    if(kunde.Mail != browserAnfrage.body.Mail){
 
-    kunde.Mail = browserAnfrage.body.Mail 
-    kunde.Kennwort = browserAnfrage.body.Kennwort  
-    kunde.Rufnummer = browserAnfrage.body.Rufnummer 
+        // Wenn der Wert der Eigenschaft von kunde.Mail abweicht 
+        // vom Wert der Eigenschaft Mail aus dem Browser - Formular 
+        // dann wird die Erfolgsmeldung intialisiert: 
+
+        erfolgsmeldung = erfolgsmeldung + "Änderung der E-Mail erfolgreich"  
+        kunde.Mail = browserAnfrage.body.Mail
+        console.log(erfolgsmeldung) 
+    }
+
+
+    if(kunde.Kennwort != browserAnfrage.body.Kennwort){
+
+        erfolgsmeldung = erfolgsmeldung + "Änderung des Kennworts erfolgreich"  
+        kunde.Kennwort = browserAnfrage.body.Kennwort
+        console.log(erfolgsmeldung) 
+    }
+
+
+    if(kunde.Rufnummer != browserAnfrage.body.Rufnummer){
+
+        erfolgsmeldung = erfolgsmeldung + "Änderung der Rufnummer erfolgreich"  
+        kunde.Rufnummer = browserAnfrage.body.Rufnummer
+        console.log(erfolgsmeldung) 
+    }
+
+
+    
+     
     
     console.log("Profil gespeichert.") 
     
@@ -169,7 +202,8 @@ meineApp.post('/profile',(browserAnfrage, serverAntwort, next) => {
         Nachname: kunde.Nachname,
         Mail: kunde.Mail,
         Rufnummer: kunde.Rufnummer,
-        Kennwort: kunde.Kennwort
+        Kennwort: kunde.Kennwort,
+        Erfolgsmeldung: erfolgsmeldung 
     })
 })
 
