@@ -7,7 +7,7 @@
 
 .kopf{
   padding: 5px;
-  background: #4CAF50;
+  background: black;
 }
 
 .navigationsleiste {  
@@ -21,11 +21,12 @@
 
 .inhaltsbereich{
   min-height: 470px;
+  color: black;
 }
 
 .fusszeile{
   padding: 2px;
-  background: #4CAF50;
+  background: black;
   text-align: right;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.5em;  
@@ -116,7 +117,12 @@ a {
   color: white;  
   text-decoration: none;
   }
-  
+
+.schaltflaeche{  
+  color: blue;  
+  text-decoration: none; 
+  }
+
 p {
   color: black;
   font-family: Arial, Helvetica, sans-serif;
