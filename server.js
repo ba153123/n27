@@ -50,16 +50,26 @@ let kundenberater = new Kundenberater()
 // Die konkrete Instanz bekommt Eigenschaftswerte zugewiesen.
 
 kundenberater.IdKundenberater = 1
-kundenberater.Nachname = "Zimmermann"
-kundenberater.Vorname = "Franz"
-kundenberater.Mail = "zimmermann@n27.com"
+kundenberater.Nachname = "Ronaldo"
+kundenberater.Vorname = "Fabien"
+kundenberater.Mail = "polnaref@n27.com"
 kundenberater.Rufnummer = "+49123/4567890"
 kundenberater.Begruessung = "Hallo, ich bin's, Dein Kundenberater!"
 kundenberater.Position = "Master of desaster"
 
 
+
+// Die Klasse Konto ist der Bauplan für alle konto-Objekte. 
+// In der Klasse werden alle relevanten Eigenschaften definiert.
+// Die konto-Objekte, die aus dieser Klasse erzeugt werden, haben die selben 
+// Eigenschaften, aber unterschiedliche Eigenschaftswerte. 
+
 class Konto{
     constructor(){
+
+        // Die relevanten Eigenschaften werden im Konstruktor augelistet. 
+        // Eigenschaften werden immer großgeschrieben. 
+
         this.Kontostand
         this.IBAN
         this.Kontoart
@@ -68,14 +78,40 @@ class Konto{
 }
 
 // Instanzierung eines Objekts namens konto vom Typ Konto
+// "let konto" bedeutet, dass ein Objekt namens konto existieren soll. Man sagt, 
+// das Koto wird deklariert. 
 
+// "= new Konto()" nennt man die instanziierung. Bei der Instanziierung wird Festplatten-
+// speicher reserviert, um bei der anschließenden Initialisierung konkrete Eigenschafts-
+// werte für das Objekt zu speichern. 
 let konto = new Konto()
 
-// Initialisierung
+//Bei der Initialisierung werden konkrete Eigenschaftswerte in die reservierten Speicher-
+// zellen geschreiben.  
+
+// Initialisierung 
+
+// Die Zuweisung von Eigenschaftswerten geschieht immer von rechts nach links. 
 
 konto.IBAN = "DE1234567890123456"
-konto.Kontostand = 1000000
+konto.Kontostand = "-100"
 konto.Kontoart = "Giro"
+
+
+class Kredit{
+    constructor(){
+        this.Zinssatz
+        this.Kreditlaufzeit 
+        this.Betrag   
+    }
+}
+
+let kredit = new Kredit ()
+
+kredit.Zinssatz = "5%"
+kredit.Kreditlaufzeit = "5 Jahre"
+kredit.Betrag = 100000
+
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -293,6 +329,9 @@ meineApp.post('/profile',(browserAnfrage, serverAntwort, next) => {
     })
 })
 
+// Sobald der Button "Kontostand anzeigen" auf der index-seite gedrückt wird, 
+// wird die meineApp.get ('/kontostandtAnzeigen'-Funktion agbearbeitet. 
+
 meineApp.get('/kontostandAnzeigen',(browserAnfrage, serverAntwort, next) => {              
     
     // Wenn ein signierter Cookie mit Namen 'istAngemeldetAls' im Browser vorhanden ist,
@@ -300,10 +339,17 @@ meineApp.get('/kontostandAnzeigen',(browserAnfrage, serverAntwort, next) => {
     // werden abgearbeitet.
 
     if(browserAnfrage.signedCookies['istAngemeldetAls']){
+
+        
         
         // Die Index-Seite wird an den Browser gegeben:
 
-        serverAntwort.render('kontostandAnzeigen.ejs',{})
+        serverAntwort.render('kontostandAnzeigen.ejs',{
+            Kontostand: konto.Kontostand, 
+            IBAN: konto.IBAN,
+            Kontoart: konto.Kontoart,
+            Erfolgsmeldung:""
+        })
     }else{
 
         // Wenn der Kunde noch nicht eigeloggt ist, soll
@@ -314,6 +360,20 @@ meineApp.get('/kontostandAnzeigen',(browserAnfrage, serverAntwort, next) => {
     }                 
 })
 
+meineApp.get('/kredit',(browserAnfrage, serverAntwort, next) => {              
+
+    if(browserAnfrage.signedCookies['istAngemeldetAls']){
+        serverAntwort.render('kredit.ejs', {
+        Zinssatz: kredit.Zinssatz,
+        Kreditlaufzeit: kredit.Kreditlaufzeit,
+        Betrag: kredit.Betrag 
+        })
+    }else{
+        serverAntwort.render('login.ejs',{
+            Meldung: ""
+        })
+    }              
+})
 
 //require('./Uebungen/ifUndElse.js')
 //require('./Uebungen/klasseUndObjekt.js')
