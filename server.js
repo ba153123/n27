@@ -23,7 +23,7 @@ let kunde = new Kunde()
 
 // Die konkrete Instanz bekommt Eigenschaftswerte zugewiesen.
 
-kunde.IdKunde = 150000
+kunde.IdKunde = 150000 
 kunde.Nachname = "Müller"
 kunde.Vorname = "Pit"
 kunde.Geburtsdatum = "23.10.2000"
@@ -377,4 +377,4 @@ meineApp.get('/kredit',(browserAnfrage, serverAntwort, next) => {
 
 //require('./Uebungen/ifUndElse.js')
 //require('./Uebungen/klasseUndObjekt.js')
-require('./Uebungen/klausur.js') 
+//require('./Klausuren/klausur.js') 
