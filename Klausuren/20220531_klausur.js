@@ -101,4 +101,3 @@ console.log("Aufgabe 5")
 // Zinsen pro Monat = (Kreditbetrag x Zinssatz) ÷ (100 x 12)
 // Formulieren Sie auf Papier den "Issue" und dazu 10 sinnvolle Tasks
 
-

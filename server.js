@@ -1,3 +1,18 @@
+class Kredit{
+    constructor(){
+        this.Zinssatz
+        this.Laufzeit
+        this.Betrag
+    }
+
+    // Eine Funktion berechnet etwas. Im Namen der Funktion steht also immer ein Verb.
+
+    berechneGesamtkostenKreditNachEinemJahr(){
+        return this.Betrag * this.Zinssatz / 100 + this.Betrag
+    }
+}
+
+
 // Programme verarbeiten oft Objekte der realen Welt. Objekte haben 
 // Eigenschaften. In unserem Bankingprogramm interessieren uns Objekte,
 // wie z.B. Kunde, Konto, Filiale, Bankautomat, ...
@@ -23,7 +38,7 @@ let kunde = new Kunde()
 
 // Die konkrete Instanz bekommt Eigenschaftswerte zugewiesen.
 
-kunde.IdKunde = 150000 
+kunde.IdKunde = 150000
 kunde.Nachname = "Müller"
 kunde.Vorname = "Pit"
 kunde.Geburtsdatum = "23.10.2000"
@@ -50,25 +65,23 @@ let kundenberater = new Kundenberater()
 // Die konkrete Instanz bekommt Eigenschaftswerte zugewiesen.
 
 kundenberater.IdKundenberater = 1
-kundenberater.Nachname = "Ronaldo"
-kundenberater.Vorname = "Fabien"
-kundenberater.Mail = "polnaref@n27.com"
+kundenberater.Nachname = "Zimmermann"
+kundenberater.Vorname = "Franz"
+kundenberater.Mail = "zimmermann@n27.com"
 kundenberater.Rufnummer = "+49123/4567890"
 kundenberater.Begruessung = "Hallo, ich bin's, Dein Kundenberater!"
 kundenberater.Position = "Master of desaster"
 
-
-
-// Die Klasse Konto ist der Bauplan für alle konto-Objekte. 
+// Die Klasse Konto ist der Bauplan für alle konto-Objekte.
 // In der Klasse werden alle relevanten Eigenschaften definiert.
-// Die konto-Objekte, die aus dieser Klasse erzeugt werden, haben die selben 
-// Eigenschaften, aber unterschiedliche Eigenschaftswerte. 
+// Die konto-Objekte, die aus dieser Klasse erzeugt werden, haben die selben
+// Eigenschaften, aber unterschiedliche Eigenschaftswerte.
 
 class Konto{
     constructor(){
 
-        // Die relevanten Eigenschaften werden im Konstruktor augelistet. 
-        // Eigenschaften werden immer großgeschrieben. 
+        // Die relevanten Eigenschaften werden im Konstruktor aufgelistet.
+        // Eigenschaften werden immer großgeschrieben        
 
         this.Kontostand
         this.IBAN
@@ -78,40 +91,23 @@ class Konto{
 }
 
 // Instanzierung eines Objekts namens konto vom Typ Konto
-// "let konto" bedeutet, dass ein Objekt namens konto existieren soll. Man sagt, 
-// das Koto wird deklariert. 
+// "let konto" bedeutet, dass ein Objekt namens konto exisitieren soll. Man sagt,
+// das konto wird deklariert.
 
 // "= new Konto()" nennt man die instanziierung. Bei der Instanziierung wird Festplatten-
 // speicher reserviert, um bei der anschließenden Initialisierung konkrete Eigenschafts-
-// werte für das Objekt zu speichern. 
+// werte für das Objekt zu speichern.
+
 let konto = new Konto()
 
-//Bei der Initialisierung werden konkrete Eigenschaftswerte in die reservierten Speicher-
-// zellen geschreiben.  
+// Bei der Initialisierung werden konkrete Eigenschaftswerte in die reservierten Speicher-
+// zellen geschrieben.
 
-// Initialisierung 
-
-// Die Zuweisung von Eigenschaftswerten geschieht immer von rechts nach links. 
+// Die Zuweisung von Eigenschaftswerten geschieht immer von rechts nach links.
 
 konto.IBAN = "DE1234567890123456"
-konto.Kontostand = "-100"
+konto.Kontostand = 1000000
 konto.Kontoart = "Giro"
-
-
-class Kredit{
-    constructor(){
-        this.Zinssatz
-        this.Kreditlaufzeit 
-        this.Betrag   
-    }
-}
-
-let kredit = new Kredit ()
-
-kredit.Zinssatz = "5%"
-kredit.Kreditlaufzeit = "5 Jahre"
-kredit.Betrag = 100000
-
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -269,6 +265,19 @@ meineApp.get('/support',(browserAnfrage, serverAntwort, next) => {
     }              
 })
 
+meineApp.get('/kreditBerechnen',(browserAnfrage, serverAntwort, next) => {              
+
+    if(browserAnfrage.signedCookies['istAngemeldetAls']){
+        serverAntwort.render('kreditBerechnen.ejs', {
+            
+        })
+    }else{
+        serverAntwort.render('login.ejs',{
+            Meldung: ""
+        })
+    }              
+})
+
 
 // Sobald der Speichern-Button auf der Profile-Seite gedrückt wird,
 // wird die meineApp.post('profile'...) abgearbeitet.
@@ -329,52 +338,40 @@ meineApp.post('/profile',(browserAnfrage, serverAntwort, next) => {
     })
 })
 
-// Sobald der Button "Kontostand anzeigen" auf der index-seite gedrückt wird, 
-// wird die meineApp.get ('/kontostandtAnzeigen'-Funktion agbearbeitet. 
+// Sobald der Button "Kontostand anzeigen" auf der index-Seite gedrückt wird, 
+// wird die meineApp.get('/kontostandAnzeigen'-Funktion abgearbeitet.
 
 meineApp.get('/kontostandAnzeigen',(browserAnfrage, serverAntwort, next) => {              
     
     // Wenn ein signierter Cookie mit Namen 'istAngemeldetAls' im Browser vorhanden ist,
-    // dann ist die Prüfung wahr und die Anweisungen im Rumpf der if-Kontrollstruktur 
+    // dann ist die Prüfung WAHR und die Anweisungen im Rumpf der if-Kontrollstruktur 
     // werden abgearbeitet.
 
     if(browserAnfrage.signedCookies['istAngemeldetAls']){
+        
 
-        
-        
+
         // Die Index-Seite wird an den Browser gegeben:
 
         serverAntwort.render('kontostandAnzeigen.ejs',{
-            Kontostand: konto.Kontostand, 
+            Kontostand: konto.Kontostand,
             IBAN: konto.IBAN,
             Kontoart: konto.Kontoart,
-            Erfolgsmeldung:""
+            Erfolgsmeldung: ""
         })
     }else{
 
         // Wenn der Kunde noch nicht eigeloggt ist, soll
         // die Loginseite an den Browser zurückgegeben werden.
+
         serverAntwort.render('login.ejs', {
             Meldung: ""
         })
     }                 
 })
 
-meineApp.get('/kredit',(browserAnfrage, serverAntwort, next) => {              
-
-    if(browserAnfrage.signedCookies['istAngemeldetAls']){
-        serverAntwort.render('kredit.ejs', {
-        Zinssatz: kredit.Zinssatz,
-        Kreditlaufzeit: kredit.Kreditlaufzeit,
-        Betrag: kredit.Betrag 
-        })
-    }else{
-        serverAntwort.render('login.ejs',{
-            Meldung: ""
-        })
-    }              
-})
 
 //require('./Uebungen/ifUndElse.js')
 //require('./Uebungen/klasseUndObjekt.js')
-//require('./Klausuren/klausur.js') 
+//require('./Klausuren/20220531_klausur.js')
+//require('./Klausuren/20221026_klausur.js')

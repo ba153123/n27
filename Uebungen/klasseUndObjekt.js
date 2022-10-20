@@ -33,7 +33,7 @@ spielerMueller.Name = "Thomas Müller"
 spielerMueller.Nummer = 25 
 spielerMueller.Position = "Stürmer"
 spielerMueller.Verein = "FCB"
-spielerMueller.Alter = 18 
+spielerMueller.Alter = 18
 
 if(spielerMueller.Alter >= 18){
     spielerMueller.Volljaehrig = true
