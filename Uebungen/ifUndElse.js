@@ -125,3 +125,62 @@ if(einzahlung-auszahlung){
     console.log("Der Saldo ist null")
 }
 
+console.log("Aufagbe")
+
+let einwohnerzahlDeutschland = 80000000 
+let einwohnerzahlFrankreich = 60000000 
+
+if (einwohnerzahlDeutschland > einwohnerzahlFrankreich ){
+
+    console.log ("Deutschland hat mehr einwohner")
+}else{
+    console.log ("Frankreich hat mehr einwohner")
+}
+
+console.log("Aufgabe 1")
+class Spielzeug{
+    constructor(){
+        this.Preis
+        this.Herkunft
+        this.Material
+        this.Farbe
+    }
+}
+
+let spielzeug1 = new Spielzeug () 
+let spielzeug2 = new Spielzeug ()
+
+spielzeug1.Preis = "10€"
+spielzeug1.Herkunft = "Indien"
+spielzeug1.Material = "Plastik"
+spielzeug1.Farbe = "Rot"
+
+spielzeug2.Preis = "20€" 
+spielzeug2.Herkunft = "China"
+spielzeug2.Material = "Holz"
+spielzeug2.Farbe = "Blau"
+
+if (spielzeug1.Farbe > spielzeug2.Farbe){
+    
+    console.log("Spielzueg 1 ist Rot")
+
+}else{
+
+    console.log("Spielzeug 2 ist Rot")
+}
+
+
+
+
+class Kunde{
+    constructor(){
+        this 
+    }
+}
+
+if (""){
+console.log("")
+
+}else{
+    console.log("")
+}
